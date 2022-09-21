@@ -22,11 +22,14 @@ Using the devices location, weather data is retrieved using the OpenWeatherMap A
 # Scheduled Work Fragment
 This fragment displays all past and future work days organized by date, with entries without a wrap time set displayed in white and completed entries greyed out. When an item is clicked the user will be directed to a details screen that displays all saved information for the given entry. 
 
-Scheduled Work List             |  Solarized Ocean
-:-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/93240608/191453177-ce9f9ebd-7e36-4bde-946e-dbcb890050ce.jpg" width="50%" height="50%">
-  |  <img src="https://user-images.githubusercontent.com/93240608/191453378-956b0388-e0ad-4cba-bad1-562ef0f7b870.jpg" width="50%" height="50%">
-
+<table width="100%">
+  <tr>
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191453794-ff1f57b4-a5b2-435b-8e42-07b44ea62d07.jpg">
+</td>
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191453794-ff1f57b4-a5b2-435b-8e42-07b44ea62d07.jpg">
+</td>
+  </tr>
+</table>
 
 # Bookmarked Fragment
 This fragment loads a list of bookmarked articles which is stored within SharedPreferences. Users can remove individual articles by clicking on the trash icon.
