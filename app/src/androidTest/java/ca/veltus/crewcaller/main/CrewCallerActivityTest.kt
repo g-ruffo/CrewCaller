@@ -122,9 +122,7 @@ class CrewCallerActivityTest : KoinTest {
                         "ProductionAddress$i",
                         "$i" + "$i" + "$i" + "$i" + "$i" + "$i" + "$i" + "$i" + "$i" + "$i",
                         "$i" + "production.email@veltus.ca",
-                        "production$i",
-                        null,
-                        null
+                        "production$i"
                     )
                 )
             }
