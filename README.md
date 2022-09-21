@@ -34,13 +34,31 @@ This fragment displays all past and future work days organized by date, with ent
 
 # Productions Fragment
 
-<img src="./images/bookmarkscreen.jpg" width="50%" height="50%">
+Here you can view all saved productions with their corresponing phone numbers. When an item is clicked the user is naviagted to the detail fragment where a summary of the total number of days worked is displayed along with the total combined earnings for the given production. 
+
+<table width="100%">
+  <tr>
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191459760-09d86f4a-39e7-45a0-95ac-65432770e007.jpg">
+</td>
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191459752-d30f99cb-d9b3-473d-b1c7-1ec081e7889a.jpg">
+</td>
+  </tr>
+</table>
 
 
 # Pay Rate Fragment
 
-
+This fragment allows users to add or edit different pay rates depending on the production they are working for.
 <img src="./images/preferencescreen.jpg" width="50%" height="50%">
+
+<table width="100%">
+  <tr>
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191464212-5532599d-dc99-4e45-bdba-102892f35171.jpg">
+</td>
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191464268-4ba86d31-09f3-4498-afc0-6e52b3e596ee.jpg">
+</td>
+  </tr>
+</table>
 
 # Contacts Fragment
 
