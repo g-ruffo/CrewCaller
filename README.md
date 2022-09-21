@@ -26,21 +26,30 @@ This fragment displays all past and future work days organized by date, with ent
   <tr>
   <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191453794-ff1f57b4-a5b2-435b-8e42-07b44ea62d07.jpg">
 </td>
-  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191453794-ff1f57b4-a5b2-435b-8e42-07b44ea62d07.jpg">
+  <td width="50%"><img src="https://user-images.githubusercontent.com/93240608/191455757-c0dd2e66-e028-481c-a6ae-afe2c81c9d75.jpg">
 </td>
   </tr>
 </table>
 
-# Bookmarked Fragment
-This fragment loads a list of bookmarked articles which is stored within SharedPreferences. Users can remove individual articles by clicking on the trash icon.
+
+# Productions Fragment
 
 <img src="./images/bookmarkscreen.jpg" width="50%" height="50%">
 
 
-# Preferences Fragment
-This fragment allows the user to select location and language settings for the articles populated within the Covid-19 News Fragment and can also choose to limit the data shown in the Covid-19 Cases Fragment to a specific province. From this screen you are also able to restore the default preference settings and clear all the saved articles from the Bookmarked Fragment.
+# Pay Rate Fragment
+
 
 <img src="./images/preferencescreen.jpg" width="50%" height="50%">
+
+# Contacts Fragment
+
+# Calendar Fragment
+
+# Preferences Fragment
+
+
+
 
 
 # API
