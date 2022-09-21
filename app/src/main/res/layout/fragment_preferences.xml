@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ca.veltus.crewcaller.main.preferences.PreferencesViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/greyBackground"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/waveBackgroundImageView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".main.preferences.PreferencesFragment">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/purpleLogoLight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/waveBackgroundImageView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_detail_background_wave_9"
+                android:contentDescription="@string/header_image"
+                android:scaleType="centerInside"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view" />
+
+            <TextView
+                android:id="@+id/productionNameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                android:text="@string/account_recovery"
+                android:textColor="@color/calendarGrey"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/backupButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintVertical_bias="0.35000002" />
+
+
+            <Button
+                android:id="@+id/backupButton"
+                disableWhenLoading="@{viewModel.showLoading.booleanValue()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="140dp"
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="@color/purpleLogoLight"
+                android:text="@string/backup"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/restoreButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <Button
+                android:id="@+id/restoreButton"
+                disableIfLoading="@{viewModel.showLoading.booleanValue()}"
+                disableIfNull="@{viewModel.backUpDatabase}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@color/purpleLogoLight"
+                android:text="@string/restore"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/backupButton" />
+
+            <TextView
+                android:id="@+id/restoreDateTextView"
+                localDateTimeConverter="@{viewModel.backUpDatabase.date}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@color/fui_bgPhone"
+                android:textSize="18sp"
+                android:visibility="@{viewModel.backUpDatabase == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/restoreButton"
+                app:layout_constraintVertical_bias="0.060000002"
+                tools:text="2022-07-17T12:12:03" />
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="8dp"
+                android:fadeVisible="@{viewModel.showLoading.booleanValue()}"
+                android:gravity="center"
+                android:indeterminate="true"
+                android:secondaryProgressTint="@color/black"
+                app:indicatorColor="@color/earningsGreen"
+                app:indicatorSize="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:trackColor="@color/purpleLogoLight"
+                app:trackThickness="15dp" />
+
+            <ImageView
+                android:id="@+id/doneCheckAnimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/complete_animation_image"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:src="@drawable/avd_check_animation_two"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

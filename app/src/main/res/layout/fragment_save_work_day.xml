@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ca.veltus.crewcaller.main.scheduled.ScheduledWorkViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_splash_screen_background"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".main.scheduled.saveworkday.SaveWorkDayFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="12dp"
+                android:layout_marginBottom="127dp"
+                android:background="@color/fui_transparent"
+                android:contentDescription="@string/back_button"
+                android:elevation="12dp"
+                android:onClick="@{() -> viewModel.navigateBack()}"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.17000002" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/createWorkDayTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/create_work_day"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/workProductionTextInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        checkEditingEnabled="@{viewModel.enableEditing}"
+                        checkEmptyArray="@{viewModel._productionListArray}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/createWorkDayTitle"
+                        app:startIconDrawable="@drawable/ic_baseline_business_24">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/workProductionAutoComplete"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/production"
+                            android:inputType="none"
+                            android:text="@={viewModel.workDayProduction}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/selectDateTextView"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="18dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/workProductionTextInputLayout"
+                        app:startIconDrawable="@drawable/ic_baseline_business_24">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/selectDateAutoComplete"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/date"
+                            android:inputType="none"
+                            android:text="@={viewModel.workDate}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/selectStartTimeTextView"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginEnd="4dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toStartOf="@+id/selectEndTimeTextView"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/selectDateTextView">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/selectStartTimeAutoComplete"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/start_time"
+                            android:inputType="none"
+                            android:text="@={viewModel.workStartTime}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/selectEndTimeTextView"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginEnd="16dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/selectStartTimeTextView"
+                        app:layout_constraintTop_toBottomOf="@id/selectDateTextView">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/selectEndTimeAutoComplete"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/end_time"
+                            android:inputType="none"
+                            android:text="@={viewModel.workEndTime}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/workAddressEditTextLayout"
+                        style="@style/LoginTextInputOuterFieldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:helperTextTextColor="@color/optionalGrey"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/selectStartTimeTextView"
+                        app:startIconDrawable="@drawable/ic_baseline_location_searching_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/workAddressEditText"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/address"
+                            android:inputType="textPostalAddress"
+                            android:text="@={viewModel.workLocation}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/workPayRateTextInputLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                        checkEditingEnabled="@{viewModel.enableEditing}"
+                        checkEmptyList="@{viewModel._payRateListArray}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="18dp"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/workAddressEditTextLayout"
+                        app:startIconDrawable="@drawable/ic_baseline_business_24">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/workPayRateAutoComplete"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="18dp"
+                            android:hint="@string/rate"
+                            android:inputType="none"
+                            android:text="@={viewModel.workRate }">
+
+                        </AutoCompleteTextView>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:checked="@={viewModel.enableEditing}"
+                        android:gravity="end"
+                        android:text="@string/enable_editing"
+                        android:visibility="@{viewModel.workId == null ? View.GONE : View.VISIBLE }"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/workPayRateTextInputLayout" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/deleteWorkDayFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/delete_button"
+                android:onClick="@{() -> viewModel.deleteWorkDay()}"
+                android:src="@drawable/ic_baseline_delete_outline_24"
+                android:visibility="@{viewModel.workId == null ? View.GONE : View.VISIBLE }"
+                app:fabSize="normal"
+                app:layout_anchorGravity="bottom|left|start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/saveWorkDayFab"
+                setEnabledDate="@{viewModel.workDate}"
+                setEnabledProduction="@{viewModel.workDayProduction}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/add_work_day_button"
+                android:onClick="@{() -> viewModel.saveWorkDay()}"
+                android:src="@drawable/ic_baseline_save_24"
+                app:fabSize="normal"
+                app:layout_anchorGravity="bottom|right|end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

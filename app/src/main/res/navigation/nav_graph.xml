@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <activity
+        android:id="@+id/crewCallerActivity"
+        android:name="ca.veltus.crewcaller.main.CrewCallerActivity"
+        android:label="CrewCallerActivity"
+        tools:layout="@layout/activity_crew_caller" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ca.veltus.crewcaller.main.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/scheduledWorkFragment"
+        android:name="ca.veltus.crewcaller.main.scheduled.ScheduledWorkFragment"
+        android:label="ScheduledWorkFragment"
+        tools:layout="@layout/fragment_scheduled_work">
+        <action
+            android:id="@+id/action_scheduledWorkFragment_to_detailWorkDayFragment"
+            app:destination="@id/detailWorkDayFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_scheduledWorkFragment_to_saveWorkDayFragment"
+            app:destination="@id/saveWorkDayFragment"
+            app:enterAnim="@anim/slide_out_up"
+            app:exitAnim="@anim/slide_in_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/productionsFragment"
+        android:name="ca.veltus.crewcaller.main.productions.ProductionsListFragment"
+        android:label="ProductionsFragment"
+        tools:layout="@layout/fragment_productions_list">
+        <action
+            android:id="@+id/action_productionsFragment_to_newProductionFragment"
+            app:destination="@id/saveProductionFragment"
+            app:enterAnim="@anim/slide_out_up"
+            app:exitAnim="@anim/slide_in_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+        <action
+            android:id="@+id/action_productionsFragment_to_detailProductionFragment"
+            app:destination="@id/detailProductionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="ca.veltus.crewcaller.main.contacts.ContactListFragment"
+        android:label="ContactsFragment"
+        tools:layout="@layout/fragment_contact_list">
+        <action
+            android:id="@+id/action_contactsFragment_to_saveContactFragment"
+            app:destination="@id/saveContactFragment"
+            app:enterAnim="@anim/slide_out_up"
+            app:exitAnim="@anim/slide_in_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+        <action
+            android:id="@+id/action_contactsFragment_to_detailContactFragment"
+            app:destination="@id/detailContactFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="production"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_contactsFragment_to_detailProductionFragment"
+            app:destination="@id/detailProductionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="ca.veltus.crewcaller.main.calendar.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_calendar" />
+    <fragment
+        android:id="@+id/preferencesFragment"
+        android:name="ca.veltus.crewcaller.main.preferences.PreferencesFragment"
+        android:label="PreferencesFragment"
+        tools:layout="@layout/fragment_preferences" />
+    <fragment
+        android:id="@+id/saveProductionFragment"
+        android:name="ca.veltus.crewcaller.main.productions.saveproduction.SaveProductionFragment"
+        android:label="SaveProductionFragment"
+        tools:layout="@layout/fragment_save_production">
+        <!--        <action-->
+        <!--            android:id="@+id/action_saveProductionFragment_to_productionsFragment"-->
+        <!--            app:destination="@id/productionsFragment" />-->
+        <action
+            android:id="@+id/action_saveProductionFragment_to_detailProductionFragment"
+            app:destination="@id/detailProductionFragment"
+            app:popUpTo="@id/detailProductionFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="productionId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveContactFragment"
+        android:name="ca.veltus.crewcaller.main.contacts.savecontact.SaveContactFragment"
+        android:label="SaveContactFragment"
+        tools:layout="@layout/fragment_save_contact">
+
+        <argument
+            android:name="contactId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_saveContactFragment_to_detailContactFragment"
+            app:destination="@id/detailContactFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailProductionFragment"
+        android:name="ca.veltus.crewcaller.main.productions.detailproduction.DetailProductionFragment"
+        android:label="DetailProductionFragment"
+        tools:layout="@layout/fragment_detail_production">
+        <action
+            android:id="@+id/action_detailProductionFragment_to_saveProductionFragment"
+            app:destination="@id/saveProductionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/action_detailProductionFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_detailProductionFragment_self"
+            app:destination="@id/detailProductionFragment" />
+        <argument
+            android:name="productionId"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/payRateFragment"
+        android:name="ca.veltus.crewcaller.main.payrates.PayRateListFragment"
+        android:label="PayRateFragment"
+        tools:layout="@layout/fragment_pay_rate_list">
+
+        <action
+            android:id="@+id/action_payRateListFragment_to_savePayRateFragment"
+            app:destination="@id/savePayRateFragment"
+            app:enterAnim="@anim/slide_out_up"
+            app:exitAnim="@anim/slide_in_down"
+            app:popEnterAnim="@anim/slide_in_up"
+            app:popExitAnim="@anim/slide_out_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/savePayRateFragment"
+        android:name="ca.veltus.crewcaller.main.payrates.savepayrate.SavePayRateFragment"
+        android:label="SavePayRateFragment"
+        tools:layout="@layout/fragment_save_pay_rate">
+
+        <argument
+            android:name="payRate"
+            android:defaultValue="@null"
+            app:argType="ca.veltus.crewcaller.main.data.dataitem.PayRateDataItem"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/saveWorkDayFragment"
+        android:name="ca.veltus.crewcaller.main.scheduled.saveworkday.SaveWorkDayFragment"
+        android:label="SaveWorkDayFragment"
+        tools:layout="@layout/fragment_save_work_day">
+        <argument
+            android:name="workDayId"
+            app:argType="string"
+            app:nullable="true" />
+
+        <action
+            android:id="@+id/action_saveWorkDayFragment_to_detailWorkDayFragment"
+            app:destination="@id/detailWorkDayFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/detailWorkDayFragment"
+            app:popUpToInclusive="true" />
+        <!--        <action-->
+        <!--            android:id="@+id/action_saveWorkDayFragment_to_scheduledWorkFragment"-->
+        <!--            app:destination="@id/scheduledWorkFragment" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/detailWorkDayFragment"
+        android:name="ca.veltus.crewcaller.main.scheduled.detailworkday.DetailWorkDayFragment"
+        android:label="DetailWorkDayFragment"
+        tools:layout="@layout/fragment_detail_work_day">
+
+        <argument
+            android:name="workDayId"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_detailWorkDayFragment_to_saveWorkDayFragment"
+            app:destination="@id/saveWorkDayFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailContactFragment"
+        android:name="ca.veltus.crewcaller.main.contacts.detailcontact.DetailContactFragment"
+        android:label="DetailContactFragment"
+        tools:layout="@layout/fragment_detail_contact">
+
+        <action
+            android:id="@+id/action_detailContactFragment_to_saveContactFragment"
+            app:destination="@id/saveContactFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+        <argument
+            android:name="contactId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

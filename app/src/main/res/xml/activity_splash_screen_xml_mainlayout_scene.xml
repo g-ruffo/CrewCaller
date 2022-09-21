@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:autoTransition="animateToEnd"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="4000">
+        <KeyFrameSet>
+
+            <KeyAttribute
+                android:translationX="-500dp"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/logoCrewText" />
+            <KeyAttribute
+                android:translationX="500dp"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/logoCallerText" />
+            <KeyAttribute
+                android:translationX="0dp"
+                motion:framePosition="5"
+                motion:motionTarget="@+id/logoCrewText" />
+            <KeyAttribute
+                android:translationX="-40dp"
+                motion:framePosition="15"
+                motion:motionTarget="@+id/logoCallerText" />
+            <KeyAttribute
+                android:rotation="0"
+                motion:framePosition="13"
+                motion:motionTarget="@+id/logoCallerText" />
+            <KeyAttribute
+                android:rotation="-30"
+                motion:framePosition="15"
+                motion:motionTarget="@+id/logoCallerText" />
+            <KeyAttribute
+                android:rotation="0"
+                android:translationX="0dp"
+                motion:framePosition="45"
+                motion:motionTarget="@+id/logoCallerText" />
+            <KeyAttribute
+                android:translationY="0dp"
+                motion:framePosition="90"
+                motion:motionTarget="@+id/splashScreenBackground" />
+            <KeyAttribute
+                android:translationY="-4000dp"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/splashScreenBackground" />
+
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/logoCrewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/logoCallerText"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/logoCallerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/logoCrewText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/logoCrewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/logoCallerText"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/logoCallerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/logoCrewText"
+            app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+</MotionScene>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ca.veltus.crewcaller.main.productions.ProductionsListViewModel" />
+
+        <import type="android.view.View" />
+
+
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_splash_screen_background"
+            tools:context=".main.productions.saveproduction.SaveProductionFragment">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="12dp"
+                android:layout_marginBottom="127dp"
+                android:background="@color/fui_transparent"
+                android:contentDescription="@string/back_button"
+                android:elevation="12dp"
+                android:onClick="@{() -> viewModel.navigateBack()}"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.17000002" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/saveProductionCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/createProductionTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/create_new_production"
+                        android:textSize="24sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/productionNameEditTextLayout"
+                        style="@style/LoginTextInputOuterFieldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxBackgroundColor="@color/disable_button_color"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:errorEnabled="true"
+                        app:errorIconDrawable="@color/design_default_color_error"
+                        app:helperText="Required*"
+                        app:helperTextEnabled="false"
+                        app:helperTextTextColor="@color/warningRed"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:prodNameHelperTextColorSwitcher="@{viewModel.productionName}"
+                        app:startIconDrawable="@drawable/ic_baseline_business_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/productionNameEditText"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/name"
+                            android:inputType="textCapWords"
+                            android:text="@={viewModel.productionName}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/productionAddressEditTextLayout"
+                        style="@style/LoginTextInputOuterFieldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:helperText="Optional"
+                        app:helperTextTextColor="@color/optionalGrey"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:startIconDrawable="@drawable/ic_baseline_location_searching_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/productionAddressEditText"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/address"
+                            android:inputType="textPostalAddress"
+                            android:text="@={viewModel.productionAddress}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/productionPhoneEditTextLayout"
+                        style="@style/LoginTextInputOuterFieldStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:helperText="Optional"
+                        app:helperTextTextColor="@color/optionalGrey"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:startIconDrawable="@drawable/fui_ic_phone_white_24dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/productionPhoneEditText"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            setPhoneNumberTextWatcher="@={viewModel.productionPhone}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/phone"
+                            android:inputType="phone" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/productionEmailEditTextLayout"
+                        style="@style/LoginTextInputOuterFieldStyle"
+                        emailHelperTextColorSwitcher="@{String.valueOf(viewModel.productionEmail)}"
+                        emailTextInputEditTextStatus="@{productionEmailEditText}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:enabled="@{viewModel.enableEditing}"
+                        app:boxStrokeColor="@color/purpleLogoLight"
+                        app:helperText="Optional"
+                        app:hintTextColor="@color/purpleLogoLight"
+                        app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/productionEmailEditText"
+                            style="@style/LoginTextInputInnerFieldStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/email"
+                            android:inputType="textEmailAddress"
+                            android:text="@={viewModel.productionEmail}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="@={viewModel.enableEditing}"
+                        android:gravity="end"
+                        android:text="@string/enable_editing"
+                        android:visibility="@{viewModel.productionId == null ? View.GONE : View.VISIBLE }" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/deleteProductionFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/delete_button"
+                android:onClick="@{() -> viewModel.deleteProduction()}"
+                android:src="@drawable/ic_baseline_delete_outline_24"
+                android:visibility="@{viewModel.productionId == null ? View.GONE : View.VISIBLE }"
+                app:fabSize="normal"
+                app:layout_anchorGravity="bottom|left|start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addProductionFab"
+                setEnabled="@{viewModel.productionName}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginTop="118dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/add_production_button"
+                android:onClick="@{() -> viewModel.saveProduction()}"
+                android:src="@drawable/ic_baseline_save_24"
+                app:fabSize="normal"
+                app:layout_anchorGravity="bottom|right|end"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saveProductionCardView"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

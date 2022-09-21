@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/homeFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/scheduledWorkFragment"
+            android:icon="@drawable/ic_baseline_work_outline_24"
+            android:title="@string/scheduled_work" />
+        <item
+            android:id="@+id/productionsFragment"
+            android:icon="@drawable/ic_baseline_business_24"
+            android:title="@string/productions" />
+        <item
+            android:id="@+id/payRateFragment"
+            android:icon="@drawable/ic_baseline_attach_money_24"
+            android:title="@string/pay_rate" />
+        <item
+            android:id="@+id/contactsFragment"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+            android:title="@string/contacts" />
+        <item
+            android:id="@+id/calendarFragment"
+            android:icon="@drawable/ic_baseline_calendar_month_24"
+            android:title="@string/calendar" />
+    </group>
+
+    <item android:title="@string/settings">
+        <menu>
+            <item
+                android:id="@+id/preferencesFragment"
+                android:title="@string/preferences" />
+            <item
+                android:id="@+id/logoutMenu"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,67 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="done_check_mark"
+            android:width="110dp"
+            android:height="110dp"
+            android:viewportWidth="400"
+            android:viewportHeight="400">
+            <path
+                android:name="top_check"
+                android:fillColor="#05e500"
+                android:fillType="evenOdd"
+                android:pathData="M 152.354 286.354 L 151.646 285.646 L 323.646 113.646 L 324.354 114.354 Z"
+                android:strokeWidth="20"
+                android:strokeColor="#05e500"
+                android:trimPathEnd="0" />
+            <path
+                android:name="path_1"
+                android:pathData="M 200.125 11.75 C 304.025 11.75 388.25 95.977 388.25 199.875 C 388.25 303.773 304.024 388 200.125 388 C 96.226 388 12 303.774 12 199.875 C 12 95.976 96.227 11.75 200.125 11.75 Z"
+                android:strokeWidth="20"
+                android:strokeColor="#05e500"
+                android:trimPathEnd="0" />
+            <path
+                android:name="bottom_check"
+                android:fillColor="#05e500"
+                android:fillType="evenOdd"
+                android:pathData="M 86.7 221.508 L 87.179 221.034 L 151.213 285.742 L 150.734 286.216 Z"
+                android:strokeWidth="20"
+                android:strokeColor="#05e500"
+                android:trimPathEnd="0" />
+        </vector>
+    </aapt:attr>
+    <target android:name="top_check">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="trimPathEnd"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType" />
+        </aapt:attr>
+    </target>
+    <target android:name="path_1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="trimPathEnd"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType" />
+        </aapt:attr>
+    </target>
+    <target android:name="bottom_check">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="400"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="trimPathEnd"
+                android:valueFrom="0"
+                android:valueTo="1"
+                android:valueType="floatType" />
+        </aapt:attr>
+    </target>
+</animated-vector>

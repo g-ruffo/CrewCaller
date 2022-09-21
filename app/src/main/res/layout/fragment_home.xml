@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="ca.veltus.crewcaller.main.home.HomeViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.R" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/greyBackground"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/waveBackgroundImageView"
+        tools:context=".main.home.HomeFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.showNoData == true ? View.GONE : View.VISIBLE}">
+
+                <TextView
+                    android:id="@+id/dateTitle"
+                    convertDateToDetail="@{viewModel.workDate}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:elevation="8dp"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/productionNameTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Monday 07, 2022" />
+
+                <TextView
+                    android:id="@+id/productionNameTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="8dp"
+                    android:text='@{viewModel.workDayProduction ?? "No Data Found"}'
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateTitle"
+                    app:layout_constraintVertical_bias="0.52"
+                    tools:text="Production Name" />
+
+                <TextView
+                    android:id="@+id/payRateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/pay_rate"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/productionNameTitle" />
+
+                <TextView
+                    android:id="@+id/tierTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text='@{viewModel.workTier ?? "No Data Found"}'
+                    android:textSize="18sp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/payRateTextView"
+                    tools:text="Tier 1" />
+
+                <TextView
+                    android:id="@+id/rateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text='@{viewModel.workRate ?? "No Data Found"}'
+                    android:textSize="18sp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tierTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/tierTextView"
+                    tools:text="$32.56" />
+
+                <TextView
+                    android:id="@+id/postionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text='@{viewModel.workPosition ?? "No Data Found"}'
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rateTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tierTextView"
+                    tools:text="Dolly Grip" />
+
+                <TextView
+                    android:id="@+id/hoursWorkedTextView"
+                    setTimeWorkedEnd="@{viewModel.workEndTime}"
+                    setTimeWorkedStart="@{viewModel.workStartTime}"
+                    setTotalHoursWorked="@{viewModel.totalHoursWorked}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:maxLines="1"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/timeWorkedTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="01:60:30" />
+
+                <TextView
+                    android:id="@+id/timeWorkedTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:text="@string/time_worked"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tierTextView"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/payRateCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:backgroundTint="@color/greyBackground"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/postionTextView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp">
+
+                        <TextView
+                            android:id="@+id/earningsCounterTextView"
+                            convertEarnings="@{viewModel.totalPay}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="38sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0"
+                            tools:text="359.51" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/startTimeCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="28dp"
+                    android:backgroundTint="@color/greyBackground"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/payRateCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp">
+
+                        <ImageView
+                            android:id="@+id/startImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/start_time_image"
+                            android:src="@drawable/ic_baseline_play_arrow_24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/startTimeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.workStartTime}"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/startImageView"
+                            tools:text="06:12" />
+
+                        <TextView
+                            android:id="@+id/startTimeTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:text="@string/start_time"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/startTimeTextView" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/wrapTimeCardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:backgroundTint="@{viewModel.workEndTime == null ? @color/white : @color/greyBackground }"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="@{viewModel.workEndTime == null ? 20 : 4 }"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintTop_toBottomOf="@+id/payRateCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp">
+
+                        <ImageView
+                            android:id="@+id/stopImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/stop_time_image"
+                            android:src="@drawable/ic_baseline_stop_24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/wrapTimeTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.workEndTime}"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/stopImageView"
+                            tools:text="06:12" />
+
+                        <TextView
+                            android:id="@+id/wrapTimeTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center"
+                            android:text="@string/wrap_time"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/wrapTimeTextView" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/addressCardView"
+                    checkForEmptyTextField="@{viewModel.workLocation}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/startTimeCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp">
+
+                        <ImageView
+                            android:id="@+id/addressImageView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/address_image"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.19999999" />
+
+                        <TextView
+                            android:id="@+id/addressTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/address"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/addressTextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/addressImageView"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.78" />
+
+                        <TextView
+                            android:id="@+id/addressTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="@{viewModel.workLocation}"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/addressImageView"
+                            tools:text="7700 Minoru Gate #180, Richmond, BC V6Y 1R8" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/weatherCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="18dp"
+                    android:backgroundTint="@color/greyBackground"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addressCardView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/unable_to_get_weather_data"
+                            android:textSize="24sp"
+                            android:visibility="@{viewModel._weather == null ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/weatherLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:text="@{viewModel._weather.city + `, ` + viewModel._weather.country}"
+                            android:textSize="24sp"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Vancouver, Canada" />
+
+                        <ImageView
+                            android:id="@+id/weatherImageView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/weather_image"
+                            android:src="@drawable/ic_baseline_cloud_24"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/weatherLocationTextView"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <TextView
+                            android:id="@+id/currentTempTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="@{String.valueOf(viewModel._weather.temperature) + `c`}"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@+id/weatherImageView"
+                            app:layout_constraintStart_toEndOf="@+id/weatherImageView"
+                            app:layout_constraintTop_toTopOf="@id/weatherImageView"
+                            tools:text="30.2" />
+
+                        <TextView
+                            android:id="@+id/maxTempTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{String.valueOf(viewModel._weather.maxTemperature)}"
+                            android:textSize="22sp"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toTopOf="@+id/minTempTextView"
+                            app:layout_constraintEnd_toStartOf="@id/highDayTempImage"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/currentTempTextView"
+                            app:layout_constraintTop_toBottomOf="@id/weatherLocationTextView"
+                            app:layout_constraintVertical_chainStyle="packed"
+                            tools:text="40" />
+
+                        <TextView
+                            android:id="@+id/minTempTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:text="@{String.valueOf(viewModel._weather.minTemperature)}"
+                            android:textSize="22sp"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toTopOf="@+id/weatherTimeTextView"
+                            app:layout_constraintEnd_toStartOf="@id/highDayTempImage"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/currentTempTextView"
+                            app:layout_constraintTop_toBottomOf="@+id/maxTempTextView"
+                            tools:text="15" />
+
+                        <ImageView
+                            android:id="@+id/highDayTempImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@string/weather_high_image"
+                            android:src="@drawable/ic_baseline_arrow_upward_24"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@id/maxTempTextView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/maxTempTextView" />
+
+                        <ImageView
+                            android:id="@+id/lowDayTempImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@string/weather_low_image"
+                            android:src="@drawable/ic_baseline_arrow_downward_24"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="@id/minTempTextView"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+
+                        <TextView
+                            android:id="@+id/weatherConditionTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel._weather.currentConditions + `, \n` + viewModel._weather.detailConditions}"
+                            android:textStyle="italic"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:text="Clouds, \n Broken Clouds " />
+
+                        <TextView
+                            android:id="@+id/weatherTimeTextView"
+                            weatherUnixTimeConverter="@{viewModel._weather.dateTime}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic"
+                            android:visibility="@{viewModel._weather == null ? View.INVISIBLE : View.VISIBLE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:text="August 27, 2022 9:33:25 PM" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/noDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fadeVisible="@{viewModel.showNoData.booleanValue()}"
+                android:gravity="center"
+                android:text="@string/no_work_scheduled"
+                android:textSize="22sp"
+                app:drawableTopCompat="@drawable/ic_no_data"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
