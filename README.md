@@ -49,7 +49,6 @@ Here you can view all saved productions with their corresponing phone numbers. W
 # Pay Rate Fragment
 
 This fragment allows users to add or edit different pay rates depending on the production they are working for.
-<img src="./images/preferencescreen.jpg" width="50%" height="50%">
 
 <table width="100%">
   <tr>
