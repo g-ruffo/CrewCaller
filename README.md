@@ -22,10 +22,10 @@ Using the devices location, weather data is retrieved using the OpenWeatherMap A
 # Scheduled Work Fragment
 This fragment displays all past and future work days organized by date, with entries without a wrap time set displayed in white and completed entries greyed out. When an item is clicked the user will be directed to a details screen that displays all saved information for the given entry. 
 
-<img src="./images/secondscreen.jpg" width="50%" height="50%">
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
+Scheduled Work List             |  Solarized Ocean
+:-------------------------:|:-------------------------:
+<img src="https://user-images.githubusercontent.com/93240608/191453177-ce9f9ebd-7e36-4bde-946e-dbcb890050ce.jpg" width="50%" height="50%">
+  |  <img src="https://user-images.githubusercontent.com/93240608/191453378-956b0388-e0ad-4cba-bad1-562ef0f7b870.jpg" width="50%" height="50%">
 
 
 # Bookmarked Fragment
