@@ -215,7 +215,7 @@ class ScheduledWorkViewModel(val app: Application, val dataSource: CrewCallerDat
 
     // Check that all required data is valid and if so save to database.
     private fun validateAndSaveWorkDay(workDay: WorkDayDataItem): Boolean {
-        workDay.location = workDay.location?.trimSpace()
+        workDay.location = workDay.location?.trim()
         if (workDay.production.isNullOrEmpty()) {
             showSnackBar.value = "A Production is Required"
             return false
