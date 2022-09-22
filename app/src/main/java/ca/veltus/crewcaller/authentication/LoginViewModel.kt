@@ -23,6 +23,7 @@ class LoginViewModel(val app: Application, val dataSource: CrewCallerDataSource)
     }
 
     // If Firebase user is not null the account has been authenticated.
+    // TODO -> Remove FirebaseUserLiveData
     val authenticationState = FirebaseUserLiveData().map { user ->
         if (user != null) {
             AuthenticationState.AUTHENTICATED
@@ -34,6 +35,7 @@ class LoginViewModel(val app: Application, val dataSource: CrewCallerDataSource)
 
     // Check to see if entered email is valid and matches correct format. If valid return true.
     fun validateEmail(): Boolean {
+        // TODO -> Correct trimSpace function for correct Toast
         emailAddress.value = emailAddress.value?.trimSpace()
         if (TextUtils.isEmpty(emailAddress.value)) {
             showToast.value = app.getString(R.string.enterEmailAddressToast)
