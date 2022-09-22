@@ -14,7 +14,6 @@ import ca.veltus.crewcaller.main.data.dto.relations.ProductionWithWorkDaysWithCo
 import ca.veltus.crewcaller.main.productions.detailproduction.DetailProductionFragmentDirections
 import ca.veltus.crewcaller.main.productions.saveproduction.SaveProductionFragmentDirections
 import ca.veltus.crewcaller.utils.calculateEarnings
-import ca.veltus.crewcaller.utils.trimSpace
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -174,7 +173,7 @@ class ProductionsListViewModel(val app: Application, val dataSource: CrewCallerD
 
     // Check that all required data is valid and if so save to database.
     private fun validateAndSaveNewProduction(productionDataItem: ProductionDataItem) {
-        productionDataItem.name = productionDataItem.name.trimSpace()
+        productionDataItem.name = productionDataItem.name.trim()
         if (productionName.value.isNullOrBlank() || productionName.value.isNullOrEmpty()) {
             showSnackBar.value = app.getString(R.string.properProductionNameRequiredToast)
             return

@@ -12,7 +12,6 @@ import ca.veltus.crewcaller.main.data.CrewCallerDataSource
 import ca.veltus.crewcaller.main.data.dataitem.ContactDataItem
 import ca.veltus.crewcaller.main.data.dataitem.asDatabaseModel
 import ca.veltus.crewcaller.main.data.dto.*
-import ca.veltus.crewcaller.utils.trimSpace
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -184,7 +183,7 @@ class ContactListViewModel(val app: Application, val dataSource: CrewCallerDataS
 
     // Ensure all required fields are valid and if so save Contact to database.
     private fun validateAndSaveContact(contact: ContactDataItem) {
-        contact.firstName = contact.firstName.trimSpace()
+        contact.firstName = contact.firstName.trim()
         if (contactFirstName.value.isNullOrBlank() || contactFirstName.value.isNullOrEmpty()) {
             showSnackBar.value = app.getString(R.string.firstNameRequiredToast)
             return

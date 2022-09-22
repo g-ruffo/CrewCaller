@@ -11,7 +11,6 @@ import ca.veltus.crewcaller.main.data.CrewCallerDataSource
 import ca.veltus.crewcaller.main.data.dataitem.PayRateDataItem
 import ca.veltus.crewcaller.main.data.dataitem.asDatabaseModel
 import ca.veltus.crewcaller.main.data.dto.*
-import ca.veltus.crewcaller.utils.trimSpace
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -78,8 +77,8 @@ class PayRateListViewModel(val app: Application, val dataSource: CrewCallerDataS
 
     // Check that all required fields are valid and if so save PayRate and navigate back.
     private fun validateAndSavePayRate(payRate: PayRateDataItem) {
-        payRate.position = payRate.position.trimSpace()
-        payRate.rate = payRate.rate.trimSpace()
+        payRate.position = payRate.position.trim()
+        payRate.rate = payRate.rate.trim()
 
         if (payRateTier.value.isNullOrBlank() || payRateTier.value.isNullOrEmpty()) {
             showSnackBar.value = app.getString(R.string.selectTierToast)
