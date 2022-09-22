@@ -9,7 +9,6 @@ import ca.veltus.crewcaller.authentication.login.LoginFragmentDirections
 import ca.veltus.crewcaller.base.BaseViewModel
 import ca.veltus.crewcaller.base.NavigationCommand
 import ca.veltus.crewcaller.main.data.CrewCallerDataSource
-import ca.veltus.crewcaller.utils.trimSpace
 
 class LoginViewModel(val app: Application, val dataSource: CrewCallerDataSource) :
     BaseViewModel(app) {
@@ -35,13 +34,12 @@ class LoginViewModel(val app: Application, val dataSource: CrewCallerDataSource)
 
     // Check to see if entered email is valid and matches correct format. If valid return true.
     fun validateEmail(): Boolean {
-        // TODO -> Correct trimSpace function for correct Toast
-        emailAddress.value = emailAddress.value?.trimSpace()
-        if (TextUtils.isEmpty(emailAddress.value)) {
+        val email = emailAddress.value?.trim()
+        if (TextUtils.isEmpty(email)) {
             showToast.value = app.getString(R.string.enterEmailAddressToast)
             return false
         }
-        return if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddress.value.toString())
+        return if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email)
                 .matches()
         ) {
             showToast.value = app.getString(R.string.emailAddressNotValidToast)
@@ -51,9 +49,9 @@ class LoginViewModel(val app: Application, val dataSource: CrewCallerDataSource)
 
     // Check to see if entered email and password are valid and match correct format. If valid return true.
     fun validateEmailAndPassword(): Boolean {
-        emailAddress.value = emailAddress.value?.trimSpace()
-        password.value = password.value?.trimSpace()
-        username.value = username.value?.trimSpace()
+        emailAddress.value = emailAddress.value?.trim()
+        password.value = password.value?.trim()
+        username.value = username.value?.trim()
 
         if (TextUtils.isEmpty(emailAddress.value)) {
             showToast.value = app.getString(R.string.enterEmailAddressToast)

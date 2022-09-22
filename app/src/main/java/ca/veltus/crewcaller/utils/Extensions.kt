@@ -61,10 +61,6 @@ fun View.fadeOut() {
     })
 }
 
-fun String.trimSpace(): String {
-    this.trim { it <= ' ' }
-    return this
-}
 
 fun calculateTimeDifferences(start: String, end: String): Long {
     var difference: Long?
