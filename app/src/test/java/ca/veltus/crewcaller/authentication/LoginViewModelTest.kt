@@ -2,6 +2,7 @@ package ca.veltus.crewcaller.authentication
 
 import android.app.Application
 import android.os.Build
+import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -80,4 +81,47 @@ class LoginViewModelTest {
         assertThat(toastResult, IsEqual("Please Enter Your Email Address"))
 
     }
+
+    @Test
+    fun validateEmailAndPassword_blankEmail_returnFalse() {
+        loginViewModel.emailAddress.value = "  "
+        loginViewModel.password.value = "123456789"
+        loginViewModel.username.value = "John Doe"
+
+        val result = loginViewModel.validateEmailAndPassword()
+        val toastResult = loginViewModel.showToast.value
+
+        assertThat(result, IsEqual(false))
+        assertThat(toastResult, IsEqual("Please Enter Your Email Address"))
+
+    }
+
+    @Test
+    fun validateEmailAndPassword_invalidEmail_returnFalse() {
+        loginViewModel.emailAddress.value = "john.doegmail.com"
+        loginViewModel.password.value = "123456789"
+        loginViewModel.username.value = "John Doe"
+
+        val result = loginViewModel.validateEmailAndPassword()
+        val toastResult = loginViewModel.showToast.value
+
+        assertThat(result, IsEqual(false))
+        assertThat(toastResult, IsEqual("Email Address is Not Valid"))
+
+    }
+
+    @Test
+    fun validateEmailAndPassword_emptyPassword_returnFalse() {
+        loginViewModel.emailAddress.value = "john.doe@gmail.com"
+        loginViewModel.password.value = "   "
+        loginViewModel.username.value = "John Doe"
+
+        val result = loginViewModel.validateEmailAndPassword()
+        val toastResult = loginViewModel.showToast.value
+
+        assertThat(result, IsEqual(false))
+        assertThat(toastResult, IsEqual("Please Enter a Password"))
+
+    }
+
 }

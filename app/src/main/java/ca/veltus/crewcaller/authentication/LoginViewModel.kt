@@ -2,6 +2,7 @@ package ca.veltus.crewcaller.authentication
 
 import android.app.Application
 import android.text.TextUtils
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import ca.veltus.crewcaller.R
@@ -34,12 +35,12 @@ class LoginViewModel(val app: Application, val dataSource: CrewCallerDataSource)
 
     // Check to see if entered email is valid and matches correct format. If valid return true.
     fun validateEmail(): Boolean {
-        val email = emailAddress.value?.trim()
-        if (TextUtils.isEmpty(email)) {
+        emailAddress.value = emailAddress.value?.trim()
+        if (TextUtils.isEmpty(emailAddress.value)) {
             showToast.value = app.getString(R.string.enterEmailAddressToast)
             return false
         }
-        return if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email)
+        return if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailAddress.value)
                 .matches()
         ) {
             showToast.value = app.getString(R.string.emailAddressNotValidToast)
