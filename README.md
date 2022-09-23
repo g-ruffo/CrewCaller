@@ -1,6 +1,3 @@
-<img src="https://user-images.githubusercontent.com/93240608/191438845-b65f4fd1-4585-4ef9-8548-1d530ba0caa5.jpg" width="100%" height="50%">
-
-
 # CrewCaller
 This Android application helps crew members working in the film industry keep track of their day-to-day lives. Users can schedule upcoming and past workdays with their start and wraps and the application will automatically provide a summary of the total hours worked and earnings for each production. 
 
