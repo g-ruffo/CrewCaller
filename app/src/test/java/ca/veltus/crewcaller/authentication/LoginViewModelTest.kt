@@ -124,4 +124,15 @@ class LoginViewModelTest {
 
     }
 
+    @Test
+    fun getEmailPasswordAndName_returnTriple() {
+        loginViewModel.emailAddress.value = "john.doe@gmail.com"
+        loginViewModel.password.value = "password"
+        loginViewModel.username.value = "John Doe"
+
+        val result = loginViewModel.getEmailPasswordAndName()
+
+        assertThat(result, IsEqual(Triple("john.doe@gmail.com", "password", "John Doe")))
+    }
+
 }
