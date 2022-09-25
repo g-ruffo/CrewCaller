@@ -4,10 +4,25 @@ import ca.veltus.crewcaller.main.data.dto.*
 import ca.veltus.crewcaller.main.data.dto.relations.ProductionWithWorkDaysWithContacts
 import ca.veltus.crewcaller.main.data.dto.relations.WorkDayAndPayRate
 
-class FakeCrewCallerDataSource: CrewCallerDataSource {
+class FakeCrewCallerDataSource(
+    var contacts: MutableList<ContactDTO>? = mutableListOf(),
+    var workDays: MutableList<WorkDayDTO>? = mutableListOf(),
+    var productions: MutableList<ProductionDTO>?  = mutableListOf(),
+    var payRates: MutableList<PayRateDTO>? = mutableListOf()
+): CrewCallerDataSource {
+
+    private var shouldReturnError = false
+
+    fun setReturnError(value: Boolean) {
+        shouldReturnError = value
+    }
 
     override suspend fun getContacts(): Result<List<ContactDTO>> {
-        TODO("Not yet implemented")
+        return if (shouldReturnError) {
+            Result.Error("No Contacts Found")
+        } else {
+            contacts.let { Result.Success(ArrayList(it!!)) }
+        }
     }
 
     override suspend fun getContactIdList(id: String): Result<List<String>> {
@@ -19,7 +34,11 @@ class FakeCrewCallerDataSource: CrewCallerDataSource {
     }
 
     override suspend fun getPayRates(): Result<List<PayRateDTO>> {
-        TODO("Not yet implemented")
+        return if (shouldReturnError) {
+            Result.Error("No PayRates Found")
+        } else {
+            payRates.let { Result.Success(ArrayList(it!!)) }
+        }
     }
 
     override suspend fun getWorkDaysForProduction(production: String): Result<List<WorkDayDTO>> {
@@ -27,16 +46,26 @@ class FakeCrewCallerDataSource: CrewCallerDataSource {
     }
 
     override suspend fun getProductions(): Result<List<ProductionDTO>> {
-        TODO("Not yet implemented")
+        return if (shouldReturnError) {
+            Result.Error("No Productions Found")
+        } else {
+            productions.let { Result.Success(ArrayList(it!!)) }
+        }
     }
+
 
     override suspend fun getProductionList(): Result<Array<String>> {
         TODO("Not yet implemented")
     }
 
     override suspend fun getWorkDays(): Result<List<WorkDayDTO>> {
-        TODO("Not yet implemented")
+        return if (shouldReturnError) {
+            Result.Error("No WorkDays Found")
+        } else {
+            workDays.let { Result.Success(ArrayList(it!!)) }
+        }
     }
+
 
     override suspend fun getContact(id: String): Result<ContactDTO> {
         TODO("Not yet implemented")
@@ -55,35 +84,35 @@ class FakeCrewCallerDataSource: CrewCallerDataSource {
     }
 
     override suspend fun saveContact(contactDTO: ContactDTO) {
-        TODO("Not yet implemented")
+        contacts?.add(contactDTO)
     }
 
     override suspend fun savePayRate(payRateDTO: PayRateDTO) {
-        TODO("Not yet implemented")
+        payRates?.add(payRateDTO)
     }
 
     override suspend fun saveProduction(productionDTO: ProductionDTO) {
-        TODO("Not yet implemented")
+        productions?.add(productionDTO)
     }
 
     override suspend fun saveWorkDay(workDayDTO: WorkDayDTO) {
-        TODO("Not yet implemented")
+        workDays?.add(workDayDTO)
     }
 
     override suspend fun deleteAllContacts() {
-        TODO("Not yet implemented")
+        contacts?.clear()
     }
 
     override suspend fun deleteAllPayRates() {
-        TODO("Not yet implemented")
+        payRates?.clear()
     }
 
     override suspend fun deleteAllProductions() {
-        TODO("Not yet implemented")
+        productions?.clear()
     }
 
     override suspend fun deleteAllWorkDays() {
-        TODO("Not yet implemented")
+        workDays?.clear()
     }
 
     override suspend fun deleteContact(id: String) {
