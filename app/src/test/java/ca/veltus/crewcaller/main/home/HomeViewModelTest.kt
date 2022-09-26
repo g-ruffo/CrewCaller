@@ -3,6 +3,7 @@ package ca.veltus.crewcaller.main.home
 import android.app.Application
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ca.veltus.crewcaller.MainCoroutineRule
@@ -10,9 +11,11 @@ import ca.veltus.crewcaller.authentication.LoginViewModel
 import ca.veltus.crewcaller.main.data.FakeCrewCallerDataSource
 import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Assert.*
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.IsEqual
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.stopKoin
 import org.robolectric.annotation.Config
@@ -42,9 +45,21 @@ class HomeViewModelTest {
         homeViewModel = HomeViewModel(app, dataSource)
     }
 
-    fun invalidateShowNoData_validValues_returnFalse() {
-//        homeViewModel._workId.value = "123456789"
 
+    @Test
+    fun calculateTimeAndEarnings_timeWorkedNull_calculatedEarningsSet() {
+        homeViewModel.workRate.value = "100.00"
+        homeViewModel.workStartTime.value = "10:00"
+        homeViewModel.workEndTime.value = "18:00"
+
+        homeViewModel.calculateTimeAndEarnings(null)
+
+        val totalPay = homeViewModel.totalPay.value
+        val totalHoursWorked = homeViewModel.totalHoursWorked.value
+
+
+        assertThat(totalPay, IsEqual(800.00))
+        assertThat(totalHoursWorked, IsEqual("8 Hours\n0 Minutes"))
 
     }
 }
