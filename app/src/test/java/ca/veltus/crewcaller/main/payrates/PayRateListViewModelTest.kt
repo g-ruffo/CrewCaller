@@ -6,7 +6,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ca.veltus.crewcaller.MainCoroutineRule
+import ca.veltus.crewcaller.getOrAwaitValue
 import ca.veltus.crewcaller.main.data.FakeCrewCallerDataSource
+import ca.veltus.crewcaller.main.data.dataitem.PayRateDataItem
 import ca.veltus.crewcaller.main.data.dto.PayRateDTO
 import org.hamcrest.MatcherAssert.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -116,6 +118,35 @@ class PayRateListViewModelTest {
 
             assertThat(result, IsEqual("Please Enter Your Rate"))
         }
+    }
+
+    @Test
+    fun loadSelectedPayRate_validValues_setLiveDataReturnTrue() {
+        val item = PayRateDataItem("id", "tier", "position", "rate")
+
+        val result = payRateListViewModel.loadSelectedPayRate(item)
+
+        val tier = payRateListViewModel.payRateTier.getOrAwaitValue()
+        val position = payRateListViewModel.payRatePosition.value
+        val rate = payRateListViewModel.payRateRate.value
+        val id = payRateListViewModel.payRateId.value
+
+        assertThat(result, IsEqual(true))
+        assertThat(tier, IsEqual("tier"))
+        assertThat(position, IsEqual("position"))
+        assertThat(rate, IsEqual("rate"))
+        assertThat(id, IsEqual("id"))
+
+    }
+
+    @Test
+    fun loadSelectedPayRate_nullPayRateDataItem_returnFalse() {
+        val item = null
+
+        val result = payRateListViewModel.loadSelectedPayRate(item)
+
+        assertThat(result, IsEqual(false))
+
     }
 
 }
