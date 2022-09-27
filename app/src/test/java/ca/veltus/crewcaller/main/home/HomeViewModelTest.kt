@@ -4,13 +4,10 @@ import android.app.Application
 import android.net.Uri
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ca.veltus.crewcaller.MainCoroutineRule
-import ca.veltus.crewcaller.authentication.LoginViewModel
 import ca.veltus.crewcaller.main.data.FakeCrewCallerDataSource
-import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual
@@ -87,7 +84,10 @@ class HomeViewModelTest {
 
         val result = homeViewModel.generateAddress()
 
-        assertThat(result, IsEqual(Uri.parse("google.navigation:mode=d&q=777%20Pacific%20Blvd%2C%20Vancouver%2C%20BC%20V6B%204Y8")))
+        assertThat(
+            result,
+            IsEqual(Uri.parse("google.navigation:mode=d&q=777%20Pacific%20Blvd%2C%20Vancouver%2C%20BC%20V6B%204Y8"))
+        )
     }
 
     @Test
