@@ -1,6 +1,7 @@
 package ca.veltus.crewcaller.main.home
 
 import android.app.Application
+import android.net.Uri
 import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
@@ -61,5 +62,40 @@ class HomeViewModelTest {
         assertThat(totalPay, IsEqual(800.00))
         assertThat(totalHoursWorked, IsEqual("8 Hours\n0 Minutes"))
 
+    }
+
+    @Test
+    fun calculateTimeAndEarnings_withTimeWorked_calculatedEarningsSet() {
+        homeViewModel.workRate.value = "100.00"
+        homeViewModel.workStartTime.value = "10:00"
+        homeViewModel.workEndTime.value = "18:00"
+
+        homeViewModel.calculateTimeAndEarnings(3600000)
+
+        val totalPay = homeViewModel.totalPay.value
+        val totalHoursWorked = homeViewModel.totalHoursWorked.value
+
+
+        assertThat(totalPay, IsEqual(100.00))
+        assertThat(totalHoursWorked, IsEqual("1 Hours\n0 Minutes"))
+
+    }
+
+    @Test
+    fun generateAddress_validWorkLocation_returnUri() {
+        homeViewModel.workLocation.value = "777 Pacific Blvd, Vancouver, BC V6B 4Y8"
+
+        val result = homeViewModel.generateAddress()
+
+        assertThat(result, IsEqual(Uri.parse("google.navigation:mode=d&q=777%20Pacific%20Blvd%2C%20Vancouver%2C%20BC%20V6B%204Y8")))
+    }
+
+    @Test
+    fun generateAddress_nullWorkLocation_returnUri() {
+        homeViewModel.workLocation.value = null
+
+        val result = homeViewModel.generateAddress()
+
+        assertThat(result, IsEqual(null))
     }
 }
