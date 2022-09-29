@@ -22,7 +22,7 @@ import org.robolectric.annotation.Config
 @RunWith(AndroidJUnit4::class)
 class ProductionsListViewModelTest {
 
-    private lateinit var contactListViewModel: ContactListViewModel
+    private lateinit var productionsListViewModel: ProductionsListViewModel
     private val dataSource = FakeCrewCallerDataSource()
     private lateinit var app: Application
 
@@ -41,7 +41,7 @@ class ProductionsListViewModelTest {
         stopKoin()
         app = ApplicationProvider.getApplicationContext()
         FirebaseApp.initializeApp(app)
-        contactListViewModel = ContactListViewModel(app, dataSource)
+        productionsListViewModel = ProductionsListViewModel(app, dataSource)
     }
 
 }
