@@ -8,7 +8,9 @@ class FakeCrewCallerDataSource(
     var contacts: MutableList<ContactDTO>? = mutableListOf(),
     var workDays: MutableList<WorkDayDTO>? = mutableListOf(),
     var productions: MutableList<ProductionDTO>?  = mutableListOf(),
-    var payRates: MutableList<PayRateDTO>? = mutableListOf()
+    var payRates: MutableList<PayRateDTO>? = mutableListOf(),
+    var workDaysAndPayRate: MutableList<WorkDayAndPayRate>? = mutableListOf()
+
 ): CrewCallerDataSource {
 
     private var shouldReturnError = false
@@ -147,8 +149,17 @@ class FakeCrewCallerDataSource(
         TODO("Not yet implemented")
     }
 
+    fun addWorkDaysAndPayRate(workDayAndPayRate: WorkDayAndPayRate) {
+        workDaysAndPayRate?.add(workDayAndPayRate)
+    }
+
     override suspend fun loadWorkDaysAndPayRate(date: String): Result<List<WorkDayAndPayRate>> {
-        TODO("Not yet implemented")
+        return if (shouldReturnError) {
+             Result.Error("Test Exception")
+        } else {
+            workDaysAndPayRate.let { Result.Success(ArrayList(it!!)) }
+        }
+
     }
 
     override suspend fun loadWorkDayAndPayRateFromId(workDayId: String): Result<WorkDayAndPayRate> {
