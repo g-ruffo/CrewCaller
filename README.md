@@ -1,5 +1,5 @@
 # CrewCaller
-This Android application helps crew members working in the film industry keep track of their day-to-day lives. Users can schedule upcoming and past workdays with their start and wraps and the application will automatically provide a summary of the total hours worked and earnings for each production. 
+Built with Kotlin, this Android application allows users to track their work schedule and earnings while providing local weather data using a RESTful API and the device’s location. Users can schedule upcoming and past workdays with their start and wrap times and the application will automatically provide a summary of the total hours worked and earnings for each production. 
 
 You can choose to view:
 - Next scheduled work day
@@ -9,9 +9,11 @@ You can choose to view:
 - A list of customized pay rates
 - A calendar view with days worked highlighted
 
-# Upcoming Work Fragment
-This fragment uses the devices current date and time to retrieve the next upcoming work day from the database and displays its details on the screen. Using the start time saved for entry, a TimerTask is created and a counter displays elapsed time worked and earnings. When the Wrap Time button is clicked the user is presented with a dialogue to select the correct end time for the day. Once confirmed the total hours and earnings are finalized and added to the production summary.
-Using the devices location, weather data is retrieved using the OpenWeatherMap API and displayed at the bottom of the screen.
+# Screen Shots
+![crewcaller_app_render copy](https://user-images.githubusercontent.com/93240608/193431965-f71ca4ea-0d75-40ae-88e2-37ab8933c8fb.png)
+
+
+<img src="https://user-images.githubusercontent.com/93240608/193431965-f71ca4ea-0d75-40ae-88e2-37ab8933c8fb.png" width="40%">
 
 <img src="https://user-images.githubusercontent.com/93240608/191449677-7824a5b0-d5c1-4f4b-aba3-b26a72a0d71e.gif" width="40%">
 
