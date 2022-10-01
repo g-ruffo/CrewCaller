@@ -82,7 +82,15 @@ Utilizing Firebase Authentication and Cloud Firestore, users have the ability to
 
 <img src="https://user-images.githubusercontent.com/93240608/191668376-f2b57fd0-6b62-48db-a80e-473f7626e228.jpg" width="40%">
 
+# Permissions
 
+    - Access Fine Location
+    - Access Course Location
+    - Access Background Location
+    - Access Network State
+    - Internet
+    - Wake Lock
+    - Call Phone
 
 # API
 - OpenWeatherMap API
