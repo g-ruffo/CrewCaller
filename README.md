@@ -27,6 +27,7 @@ You can choose to view:
 - Retrofit
 - JUnit
 - Espresso
+- Koin
 - Firebase
 
 
