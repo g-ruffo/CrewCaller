@@ -61,11 +61,8 @@
 
                     <TextView
                         android:id="@+id/createPayRateTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        style="@style/addEditCardViewTitle"
                         android:text="@string/create_new_pay_rate"
-                        android:textSize="24sp"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -189,5 +186,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </layout>

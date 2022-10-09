@@ -47,7 +47,7 @@
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/cardViewLayoutMargin"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -59,18 +59,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
                     <TextView
                         android:id="@+id/createWorkDayTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        style="@style/addEditCardViewTitle"
                         android:text="@string/create_work_day"
-                        android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/workProductionTextInputLayout"
@@ -245,7 +240,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+                        android:layout_marginTop="@dimen/enableEditSwitchMarginTop"
                         android:checked="@={viewModel.enableEditing}"
                         android:gravity="end"
                         android:text="@string/enable_editing"

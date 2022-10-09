@@ -55,24 +55,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/createProductionTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
+                        style="@style/addEditCardViewTitle"
                         android:text="@string/create_new_production"
-                        android:textSize="24sp" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/productionNameEditTextLayout"
                         style="@style/LoginTextInputOuterFieldStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/createProductionTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginHorizontal="16dp"
                         android:enabled="@{viewModel.enableEditing}"
                         app:boxBackgroundColor="@color/disable_button_color"
@@ -102,6 +105,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/productionNameEditTextLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:enabled="@{viewModel.enableEditing}"
                         app:boxStrokeColor="@color/purpleLogoLight"
                         app:helperText="Optional"
@@ -123,6 +129,9 @@
                         android:id="@+id/productionPhoneEditTextLayout"
                         style="@style/LoginTextInputOuterFieldStyle"
                         android:layout_width="match_parent"
+                        app:layout_constraintTop_toBottomOf="@id/productionAddressEditTextLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="16dp"
                         android:enabled="@{viewModel.enableEditing}"
@@ -154,6 +163,9 @@
                         app:boxStrokeColor="@color/purpleLogoLight"
                         app:helperText="Optional"
                         app:hintTextColor="@color/purpleLogoLight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/productionPhoneEditTextLayout"
                         app:startIconDrawable="@drawable/ic_baseline_email_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -170,12 +182,15 @@
                         android:id="@+id/enableEditingSwitch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/productionEmailEditTextLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="@dimen/enableEditSwitchMarginTop"
                         android:checked="@={viewModel.enableEditing}"
                         android:gravity="end"
                         android:text="@string/enable_editing"
                         android:visibility="@{viewModel.productionId == null ? View.GONE : View.VISIBLE }" />
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
 

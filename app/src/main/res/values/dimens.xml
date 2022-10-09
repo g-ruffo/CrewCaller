@@ -7,4 +7,7 @@
     <dimen name="backButtonSize">32dp</dimen>
     <dimen name="backButtonLayoutMargin">12dp</dimen>
     <dimen name="listItemLayoutMargin">10dp</dimen>
+    <dimen name="addEditCardViewTitleSize">24sp</dimen>
+    <dimen name="cardViewLayoutMargin">16dp</dimen>
+    <dimen name="enableEditSwitchMarginTop">18dp</dimen>
 </resources>
