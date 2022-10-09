@@ -24,9 +24,9 @@ import ca.veltus.crewcaller.main.payrates.PayRateListViewModel
 import ca.veltus.crewcaller.main.preferences.PreferencesViewModel
 import ca.veltus.crewcaller.main.productions.ProductionsListViewModel
 import ca.veltus.crewcaller.main.scheduled.ScheduledWorkViewModel
-import ca.veltus.crewcaller.utils.DataBindingIdlingResource
+import ca.veltus.crewcaller.main.data.utils.DataBindingIdlingResource
 import ca.veltus.crewcaller.utils.EspressoIdlingResource
-import ca.veltus.crewcaller.utils.monitorActivity
+import ca.veltus.crewcaller.main.data.utils.monitorActivity
 import kotlinx.coroutines.runBlocking
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import org.hamcrest.CoreMatchers.equalTo
