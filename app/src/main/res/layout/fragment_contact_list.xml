@@ -19,14 +19,9 @@
 
         <ImageButton
             android:id="@+id/backButton"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_margin="12dp"
-            android:background="@color/fui_transparent"
+            style="@style/backButton"
             android:contentDescription="@string/back_button"
-            android:elevation="12dp"
             android:onClick="@{() -> viewModel.navigateBack()}"
-            android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:visibility="@{viewModel.filteredContactList == false ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent"
