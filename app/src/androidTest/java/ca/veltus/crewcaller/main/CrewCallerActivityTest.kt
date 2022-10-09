@@ -28,8 +28,8 @@ import ca.veltus.crewcaller.utils.DataBindingIdlingResource
 import ca.veltus.crewcaller.utils.EspressoIdlingResource
 import ca.veltus.crewcaller.utils.monitorActivity
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matchers.*
 import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

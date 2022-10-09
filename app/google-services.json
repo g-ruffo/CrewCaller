@@ -28,7 +28,7 @@
       ],
       "api_key": [
         {
-          "current_key": "${GS_CURRENT_KEY}"
+          "current_key":"${GS_CURRENT_KEY}"
         }
       ],
       "services": {
