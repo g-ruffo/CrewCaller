@@ -22,10 +22,8 @@
 
             <TextView
                 android:id="@+id/loginTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/loginTitle"
                 android:text="@string/login"
-                android:textSize="54sp"
                 app:layout_constraintBottom_toTopOf="@+id/loginSubtitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.06"
