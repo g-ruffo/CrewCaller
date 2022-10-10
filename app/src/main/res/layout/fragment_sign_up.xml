@@ -50,10 +50,8 @@
 
             <TextView
                 android:id="@+id/signUpSubtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/loginSubtitle"
                 android:text="@string/enter_your_details_to_register"
-                android:textSize="22sp"
                 app:layout_constraintBottom_toTopOf="@+id/nameEditTextLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.25"
