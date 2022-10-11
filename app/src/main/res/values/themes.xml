@@ -60,6 +60,17 @@
         <item name="android:contentDescription">@string/back_button</item>
     </style>
 
+    <style name="loginBackButton">
+        <item name="android:elevation">12dp</item>
+        <item name="tint">@color/optionalGrey</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:background">@color/fui_transparent</item>
+        <item name="android:layout_width">@dimen/backButtonSize</item>
+        <item name="android:layout_height">@dimen/backButtonSize</item>
+        <item name="android:layout_margin">@dimen/backButtonLayoutMargin</item>
+        <item name="android:contentDescription">@string/back_button</item>
+    </style>
+
     <style name="addEditCardViewTitle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
