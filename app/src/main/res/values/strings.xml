@@ -94,7 +94,7 @@
     <string name="stop_time_image">stop time image</string>
     <string name="wrap_time">Wrap Time</string>
     <string name="forgot_password">Forgot Password?</string>
-    <string name="enter_your_email_address_to_reset_you_passoword">Enter your email address to reset you passoword.</string>
+    <string name="enter_your_email_address_to_reset_you_password">Enter your email address to reset you password.</string>
     <string name="type_your_email">Type your Email</string>
     <string name="submit">Submit</string>
     <string name="unable_to_get_weather_data">Unable To Get Weather Data</string>
