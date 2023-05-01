@@ -9,7 +9,7 @@ You can choose to view:
 - A list of customized pay rates
 - A calendar view with days worked highlighted
 
-# Screen Shots
+# Screenshots
 <img src="https://user-images.githubusercontent.com/93240608/193431965-f71ca4ea-0d75-40ae-88e2-37ab8933c8fb.png" width="100%">
 
 <img src="https://user-images.githubusercontent.com/93240608/191449677-7824a5b0-d5c1-4f4b-aba3-b26a72a0d71e.gif" width="35%">
